@@ -13,9 +13,7 @@ createBoard();
 whitePiecesTurn();
 
 function whitePiecesTurn() {
-    squares.forEach((square) => {
-        square.removeEventListener("click", handleClick);
-    });
+    removeAllEventListeners();
     const whitePieces = document.querySelectorAll("[piece-color=white]");
     whitePieces.forEach((piece) => {
         piece.addEventListener("click", handleClick);
@@ -23,15 +21,18 @@ function whitePiecesTurn() {
 }
 
 function blackPiecesTurn() {
-    squares.forEach((square) => {
-        square.removeEventListener("click", handleClick);
-    });
+    removeAllEventListeners();
     const blackPieces = document.querySelectorAll("[piece-color=black]");
     blackPieces.forEach((piece) => {
         piece.addEventListener("click", handleClick);
     });
 }
 
+function removeAllEventListeners() {
+    squares.forEach((square) => {
+        square.removeEventListener("click", handleClick);
+    });
+}
 function handleClick(e) {
     pieceToMove = e.target;
     pieceType = pieceToMove.getAttribute("piece-type");
@@ -57,14 +58,17 @@ function movePiece(newPosition) {
     } else {
         checkForPawnPromotion(newPosition.target);
         if (isEnemyCHECK()) {
-            if (isCHECKMATE()) showWinner(currentColorTurn);
+            if (isCHECKMATE()) {
+                showWinner(currentColorTurn);
+                return;
+            }
         }
         swapTurn();
     }
 }
 function showWinner(winnerColor) {
     console.log(`${winnerColor[0].toUpperCase() + winnerColor.slice(1)} wins!`);
-    squares.forEach((square) => square.removeEventListener("click", handleClick));
+    removeAllEventListeners();
 }
 
 function isCHECKMATE() {
@@ -94,7 +98,7 @@ function isCHECKMATE() {
             }
             whiteTurn = !whiteTurn;
 
-            //get the path that gives CHECK
+            //get the squares from CHECK path 
             let pieceCHECKINGmoves = [];
             const substraction = pieceCHECKING[0].getAttribute("data-id") - enemyKing.getAttribute("data-id");
             const direction = getDirection(substraction);
