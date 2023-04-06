@@ -65,11 +65,7 @@ function movePiece(newPosition) {
 function showWinner(winnerColor) {
     console.log(`${winnerColor[0].toUpperCase() + winnerColor.slice(1)} wins!`);
 }
-function getDirection(substraction) {
-    for (let n = 7; n <= 9; n++) {
-        if (substraction % n == 0 * substraction) return (n * substraction) / Math.abs(substraction);
-    }
-}
+
 function isCHECKMATE() {
     const currentColorTurn = whiteTurn ? "white" : "black";
     const enemyKing = whiteTurn ? document.querySelector("[piece-type=bk]") : document.querySelector("[piece-type=wk");
@@ -81,15 +77,16 @@ function isCHECKMATE() {
     whiteTurn = !whiteTurn;
     const escapeCHECK = enemyKingPossibleMoves.filter((possibleMove) => !allyPossibleMoves.includes(possibleMove));
 
+    // Check if another piece can stop the MATE
     if (escapeCHECK.length == 0) {
         if (pieceCHECKING.length == 1) {
-            // Check if another piece can stop the MATE ......................
             whiteTurn = !whiteTurn;
             const enemyPossibleMoves = getAllPiecesPossibleMoves(enemyKingColor);
+            // exclude the king's moves
             for (let i = 0; i < enemyKingPossibleMoves.length; i++) {
                 for (let j = 0; j < enemyPossibleMoves.length; j++) {
                     if (enemyKingPossibleMoves[i] == enemyPossibleMoves[j]) {
-                        enemyPossibleMoves.splice(j, 1); // out of board value to remove the king's moves from the array
+                        enemyPossibleMoves.splice(j, 1);
                         break;
                     }
                 }
@@ -149,6 +146,12 @@ function isCHECKMATE() {
     enemyKing.setAttribute("contains-piece", "true");
     enemyKing.setAttribute("piece-color", enemyKingColor);
     if (possibleCaptures == capturesFailed && possibleCaptures != 0) return true;
+
+    function getDirection(substraction) {
+        for (let n = 7; n <= 9; n++) {
+            if (substraction % n == 0 * substraction) return (n * substraction) / Math.abs(substraction);
+        }
+    }
 }
 
 function getAllPiecesPossibleMoves(piecesColor) {
