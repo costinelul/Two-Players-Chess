@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    background-color: rgb(21, 48, 99);
+    height: 100vh;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    border: 5px solid black;
+}
+
+.beige {
+    background-color: beige;
+}
+
+.brown {
+    background-color:cadetblue
+}
+.highlight {
+    opacity: 0.5;
+}
+.square {
+    height: calc(4vh + 3.5vw);
+    width: calc(4vh + 3.5vw);
+}
+
+[piece-type="wr"] {
+    background-image: url(../pieces/wr.png);
+}
+
+[piece-type="br"] {
+    background-image: url(../pieces/br.png);
+}
+[piece-type="wp"] {
+    background-image: url(../pieces/wp.png);
+}
+[piece-type="bp"] {
+    background-image: url(../pieces/bp.png);
+}
+[piece-type="wq"] {
+    background-image: url(../pieces/wq.png);
+}
+[piece-type="bq"] {
+    background-image: url(../pieces/bq.png);
+}
+[piece-type="wk"] {
+    background-image: url(../pieces/wk.png);
+}
+[piece-type="bk"] {
+    background-image: url(../pieces/bk.png);
+}
+[piece-type="wh"] {
+    background-image: url(../pieces/wh.png);
+}
+[piece-type="bh"] {
+    background-image: url(../pieces/bh.png);
+}
+[piece-type="wb"] {
+    background-image: url(../pieces/wb.png);
+}
+[piece-type="bb"] {
+    background-image: url(../pieces/bb.png);
+}
+[piece-type="wp"],
+[piece-type="wr"],
+[piece-type="bk"],
+[piece-type="wh"],
+[piece-type="bh"],
+[piece-type="bb"],
+[piece-type="wb"],
+[piece-type="wk"],
+[piece-type="wq"],
+[piece-type="bq"],
+[piece-type="wb"],
+[piece-type="bp"],
+[piece-type="bp"],
+[piece-type="br"] {
+    cursor: pointer;
+    background-size: 80%;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}
+
+[piece-type="wh"] {
+    background-size: 70%;
+}
+
+.CHECK {
+    background-color: rgb(255, 0, 0);
+}
+
+.promotion-menu {
+    position: absolute;
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.603);
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid black;
+}
