@@ -166,14 +166,18 @@ export class King {
         let possibleMoves = [];
         let allyPositions = [];
         const allyColor = whiteTurn ? "white" : "black";
-        if (+this.currentPosition - 8 >= 0) possibleMoves.push(+this.currentPosition - 8);
-        if (+this.currentPosition + 8 <= 63) possibleMoves.push(+this.currentPosition + 8);
-        if (+this.currentPosition + 1 <= 63 && (+this.currentPosition + 1) % 8 != 0) possibleMoves.push(+this.currentPosition + 1);
-        if (+this.currentPosition - 1 >= 0 && (+this.currentPosition - 1) % 8 != 7) possibleMoves.push(+this.currentPosition - 1);
-        if (+this.currentPosition - 7 >= 0 && (+this.currentPosition - 7) % 8 != 0) possibleMoves.push(+this.currentPosition - 7);
-        if (+this.currentPosition - 9 >= 0 && (+this.currentPosition - 9) % 8 != 7) possibleMoves.push(+this.currentPosition - 9);
-        if (+this.currentPosition + 9 <= 63 && (+this.currentPosition + 9) % 8 != 0) possibleMoves.push(+this.currentPosition + 9);
-        if (+this.currentPosition + 7 <= 63 && (+this.currentPosition + 7) % 8 != 7) possibleMoves.push(+this.currentPosition + 7);
+        if (+this.currentPosition + 8 <= 63) updateMoves(8);
+        if (+this.currentPosition - 8 >= 0) updateMoves(-8);
+        if (+this.currentPosition + 1 <= 63 && (+this.currentPosition + 1) % 8 != 0) updateMoves(1);
+        if (+this.currentPosition - 1 >= 0 && (+this.currentPosition - 1) % 8 != 7) updateMoves(-1);
+        if (+this.currentPosition + 7 <= 63 && (+this.currentPosition + 7) % 8 != 7) updateMoves(7);
+        if (+this.currentPosition - 7 >= 0 && (+this.currentPosition - 7) % 8 != 0) updateMoves(-7);
+        if (+this.currentPosition + 9 <= 63 && (+this.currentPosition + 9) % 8 != 0) updateMoves(9);
+        if (+this.currentPosition - 9 >= 0 && (+this.currentPosition - 9) % 8 != 7) updateMoves(-9);
+
+        function updateMoves(a) {
+            possibleMoves.push(+this.currentPosition + a);
+        }
 
         for (let i = 0; i < possibleMoves.length; i++) {
             if (squares[possibleMoves[i]].getAttribute("piece-color") == allyColor) {
