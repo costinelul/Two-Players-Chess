@@ -64,6 +64,7 @@ function movePiece(newPosition) {
 }
 function showWinner(winnerColor) {
     console.log(`${winnerColor[0].toUpperCase() + winnerColor.slice(1)} wins!`);
+    squares.forEach((square) => square.removeEventListener("click", handleClick));
 }
 
 function isCHECKMATE() {
