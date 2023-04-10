@@ -11,7 +11,6 @@ const CHECK_HIGHLIGHT_DURATION = "700";
 
 createBoard();
 whitePiecesTurn();
-
 function whitePiecesTurn() {
     removeAllEventListeners();
     const whitePieces = document.querySelectorAll("[piece-color=white]");
@@ -68,6 +67,9 @@ function movePiece(newPosition) {
 }
 function showWinner(winnerColor) {
     console.log(`${winnerColor[0].toUpperCase() + winnerColor.slice(1)} wins!`);
+    const winnerText = document.querySelector(".winnerText");
+    winnerText.style.display = "flex";
+    winnerText.innerHTML = `${winnerColor.toUpperCase()} wins!`;
     removeAllEventListeners();
 }
 
@@ -98,7 +100,7 @@ function isCHECKMATE() {
             }
             whiteTurn = !whiteTurn;
 
-            //get the squares from CHECK path 
+            //get the squares from CHECK path
             let pieceCHECKINGmoves = [];
             const substraction = pieceCHECKING[0].getAttribute("data-id") - enemyKing.getAttribute("data-id");
             const direction = getDirection(substraction);

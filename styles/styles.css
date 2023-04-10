@@ -18,7 +18,7 @@ body {
 }
 
 .brown {
-    background-color:cadetblue
+    background-color: cadetblue;
 }
 .highlight {
     opacity: 0.5;
@@ -108,4 +108,17 @@ body {
     justify-content: center;
     align-items: center;
     border: 4px solid black;
+}
+
+.winnerText {
+    background-color: rgba(0, 0, 0, 0.603);
+    width: 400px;
+    height: 200px;
+    color: white;
+    font-family: Cascadia Mono;
+    font-size: 50px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    display: none;
 }
